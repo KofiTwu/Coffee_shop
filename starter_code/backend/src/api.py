@@ -12,9 +12,9 @@ from .database.models import db_drop_and_create_all, setup_db, Drink
 from .auth.auth import AuthError, requires_auth
 
 
-# ENV_FILE = find_dotenv()
-# if ENV_FILE:
-#     load_dotenv(ENV_FILE)
+ENV_FILE = find_dotenv()
+if ENV_FILE:
+    load_dotenv(ENV_FILE)
 
 app = Flask(__name__)
 app.secret_key=env.get("APP_SECRET_KEY")
@@ -40,17 +40,17 @@ def home():
 
     })
 
-# @app.route("/login")
-# def login():
-#     return oauth.auth0.authorize_redirect(
-#         redirect_uri=url_for("callback",_external=True)
-#     )
+@app.route("/login")
+def login():
+    return oauth.auth0.authorize_redirect(
+        redirect_uri=url_for("callback",_external=True)
+    )
 
-# @app.route("/callback", methods=["GET","POST"])
-# def callback():
-#     token = oauth.auth0.authorize_access_token()
-#     session["user"]=token
-#     return redirect("/")
+@app.route("/callback", methods=["GET","POST"])
+def callback():
+    token = oauth.auth0.authorize_access_token()
+    session["user"]=token
+    return redirect("/")
 
 
 
@@ -90,7 +90,6 @@ def drink_details(payload):
         drinks = Drink.query.all()
 
         
-
         return jsonify({
             'success': True,
             'drinks': [drink.long() for drink in drinks],

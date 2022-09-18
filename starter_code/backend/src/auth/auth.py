@@ -11,9 +11,9 @@ from os import environ as env
 
 
 
-AUTH0_DOMAIN = 'dev-azji4v2f.us.auth0.com'
+AUTH0_DOMAIN = 'saahara.us.auth0.com'
 ALGORITHMS = ['RS256']
-API_AUDIENCE = 'http://127.0.0.1:5000/'
+API_AUDIENCE = 'http://localhost:5000'
 
 ## AuthError Exception
 '''
